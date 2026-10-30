@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,7 +39,7 @@ import java.util.Scanner;
 
                 if (!scanner.hasNextInt()) {
                     System.out.println("Please enter 1, 2, or 3.");
-                    scanner.nextLine();                 // discard bad input
+                    scanner.nextLine();                 // dis
                     continue;
                 }
                 choice = scanner.nextInt();
@@ -63,6 +66,34 @@ import java.util.Scanner;
         public static void loadInventory(String fileName, ArrayList<Product> inventory) {
             // TODO: skip the header line, then read each line, split on "|",
             //       create a com.pluralsight.Product object, and add it to the inventory list
+           try {
+               BufferedReader bReader = new BufferedReader(new FileReader("products.csv"));
+               String line;
+               //Skips Header
+               bReader.readLine();
+               //Loops through the data and splits until finished
+               while ((line = bReader.readLine())!= null) {
+                   String[] parts = line.split("\\|");
+
+                   //Set data type expectation for the constructor
+                   String sku = parts[0];
+                   String productName = parts[1];
+                   double price = Double.parseDouble(parts[2]);
+                   String department = parts[3];
+
+                   //Call the constructor//
+
+                   Product product = new Product(sku,productName,price,department);
+                   //Add product to arrayList inventory
+                   inventory.add(product);
+
+
+
+               }
+           } catch (IOException e) {
+               System.out.println("Invalid info");
+           }
+
         }
 
         /**
