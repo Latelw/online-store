@@ -27,6 +27,8 @@ import java.util.Scanner;
             // Load inventory from the data file (pipe-delimited: SKU|com.pluralsight.Product Name|Price|Department)
             loadInventory("products.csv", inventory);
 
+            // System.out.println("Products loaded: " + inventory.size());
+
             // Main menu loop
             Scanner scanner = new Scanner(System.in);
             int choice = -1;
@@ -68,6 +70,7 @@ import java.util.Scanner;
             //       create a com.pluralsight.Product object, and add it to the inventory list
            try {
                BufferedReader bReader = new BufferedReader(new FileReader("products.csv"));
+              // System.out.println("file opened successfully");
                String line;
                //Skips Header
                bReader.readLine();
@@ -86,6 +89,8 @@ import java.util.Scanner;
                    Product product = new Product(sku,productName,price,department);
                    //Add product to arrayList inventory
                    inventory.add(product);
+
+
 
 
 
