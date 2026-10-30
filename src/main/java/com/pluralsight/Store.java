@@ -27,6 +27,8 @@ import java.util.Scanner;
             // Load inventory from the data file (pipe-delimited: SKU|com.pluralsight.Product Name|Price|Department)
             loadInventory("products.csv", inventory);
 
+
+
             // System.out.println("Products loaded: " + inventory.size());
 
             // Main menu loop
@@ -140,6 +142,14 @@ import java.util.Scanner;
          */
         public static Product findProductById(String id, ArrayList<Product> inventory) {
             // TODO: loop over the list and compare ids
+            for (Product product : inventory){
+
+                if (product.getSku().equals(id)) {
+                    return product;
+                }
+
+            }
+
             return null;
         }
     }
